@@ -2,6 +2,15 @@
 
 [Jenkins Job Builder](http://docs.openstack.org/infra/jenkins-job-builder/index.html)
 
+##Jenkins-Jobs Builder
+* Allows SCM of Jenkins Jobs
+* Build Jenkins Jobs from CLI, rather than UI
+* Does not SCM:
+  * Plugins
+  * Jenkins Environment
+  * Credentials
+* Cannot export existing job
+
 ##Setup Environment
 
 ###Get Jenkins-Jobs-Builder
@@ -43,6 +52,8 @@ Directory structure in examples:
 │   ├── ex6-build_parameters.yaml
 │   ├── ex7-build_properties.yaml
 │   └── ex8-build_scm.yaml
+├── pres
+│   └── how-to-JJB.odp
 ├── README.md
 └── scripts
     └── somescript.sh
@@ -127,7 +138,7 @@ Directory structure in examples:
 ```
 
 ###Include
-* Include seperate yaml file
+* Include separate yaml file
 * Replace `!include` with yaml block
 * Treats file as block of yaml (parsed)
 ```
@@ -207,6 +218,7 @@ echo "Hello {shell_var}"
 
 *Too many to go over in this presentation, a few examples...*     
 
+* Parameters
 * Properties
 * Publishers
 * SCM
