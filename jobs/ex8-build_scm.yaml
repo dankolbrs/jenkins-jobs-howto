@@ -1,0 +1,12 @@
+- job:
+      name: scm_example
+      project-type: freestyle
+      description: |
+          Example of build with SCM
+      builders:
+          - shell: ls -lah
+      scm:
+          - git:
+              url: https://github.com/dankolbrs/jenkins-jobs-howto.git
+              branches:
+                  - master

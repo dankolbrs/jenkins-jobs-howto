@@ -1,0 +1,4 @@
+- shell: |
+    echo "include-test-{name}"
+    echo "{VAR1}"
+    echo "{VAR2}"

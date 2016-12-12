@@ -1,0 +1,7 @@
+- job:
+      name: basic_job
+      project-type: freestyle
+      description: |
+          Example of a basic freestyle job
+      builders:
+          - shell: 'echo "Hello"'

@@ -1,0 +1,17 @@
+- project:
+      name: include_demonstration
+      jobs:
+        - 'include-demonstration-{name}':
+                name: include-first
+        - 'include-demonstration-{name}':
+                name: include-second
+
+- job-template:
+    name: 'include-demonstration-{name}'
+    id: 'include-demonstration-{name}'
+    VAR1: "Hello"
+    VAR2: "World"
+    description: |
+        Example of using include
+    builders:
+        !include: extras/include_demonstrations.yaml

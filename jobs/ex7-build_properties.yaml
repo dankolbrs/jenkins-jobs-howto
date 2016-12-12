@@ -1,0 +1,11 @@
+- job:
+      name: build_properties
+      project-type: freestyle
+      description: |
+          Example using build-discarder
+      builders:
+          - shell: "echo Hello, World!"
+      properties:
+          - build-discarder:
+              days-to-keep: 1
+              num-to-keep: 1

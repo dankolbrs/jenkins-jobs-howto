@@ -1,0 +1,25 @@
+- job:
+      name: pipeline_example
+      project-type: workflow
+      description: |
+        Example pipeline job
+      dsl: |
+        //********************
+        stage 'PreDeploy'
+        //********************
+        node('master') {
+                println("Hello world")
+                sh'hostname'
+        }
+        //********************
+        stage 'Deploy'
+        //********************
+        node('master') {
+                sh'pwd'
+        }
+        //********************
+        stage 'Post-Deploy'
+        //********************
+        node('master') {
+                sh'ls -lah'
+        }

@@ -1,0 +1,12 @@
+- job:
+      name: build_parameters
+      project-type: freestyle
+      description: |
+          Example using Parameters
+      builders:
+          - shell: echo Hello, ${PARAM}!
+      parameters:
+          - string:
+              name: PARAM
+              default: "World"
+              description: "A parameter named PARAM to be echoed"

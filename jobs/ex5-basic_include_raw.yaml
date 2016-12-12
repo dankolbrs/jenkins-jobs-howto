@@ -1,0 +1,19 @@
+- project:
+      name: include_raw_demonstration
+      jobs:
+        - 'include-raw-test-{name}':
+                name: include-raw-first
+                shell_var: "City"
+        - 'include-raw-test-{name}':
+                name: include-raw-second
+                shell_var: "Country"
+
+- job-template:
+    name: 'include-raw-test-{name}'
+    id: 'include-raw-test-{name}'
+    description: |
+        Example using include-raw
+    builders:
+        - shell:
+            !include-raw:
+                - scripts/somescript.sh

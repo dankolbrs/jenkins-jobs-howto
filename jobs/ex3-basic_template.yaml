@@ -1,0 +1,18 @@
+- project:
+      name: template_demonstration
+      jobs:
+        - 'template-test-{name}':
+                name: template-first
+                shell_var: "Hello"
+        - 'template-test-{name}':
+                name: template-second
+                shell_var: "Goodbye"
+
+- job-template:
+    name: 'template-test-{name}'
+    id: 'template-test-{name}'
+    description: |
+        Example of templates using {shell_var}
+    builders:
+        - shell: |
+            echo "{shell_var}, World!"

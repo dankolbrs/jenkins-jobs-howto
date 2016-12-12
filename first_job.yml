@@ -1,0 +1,83 @@
+- job:
+      name: test_job
+      project-type: workflow
+      dsl: |
+        //********************
+        stage 'PreDeploy'
+        //********************
+        node('master') {
+                println("Hello world") 
+                sh'hostname'
+        }
+        //********************
+        stage 'Deploy'
+        //********************
+        node('master') {
+                sh'pwd'
+        }
+        //********************
+        stage 'Post-Deploy'
+        //********************
+        node('master') {
+                sh'ls -lah'
+        }
+
+- job:
+      name: job2b 
+      project-type: freestyle
+      builders:
+          - shell: 'echo "Hello"'
+   
+- project:
+      name: template_demonstration
+      jobs:
+        - 'template-test-{name}':
+                name: template-first
+                shell_var: "Hello"
+        - 'template-test-{name}':
+                name: template-second
+                shell_var: "Goodbye"
+
+- project: 
+      name: include_demonstration
+      jobs: 
+        - 'include-demonstration-{name}':
+                name: include-first
+        - 'include-demonstration-{name}':
+                name: include-second
+
+- project:
+      name: include_raw_demonstration
+      jobs:
+        - 'include-raw-test-{name}':
+                name: include-raw-first
+                shell_var: "City"
+        - 'include-raw-test-{name}':
+                name: include-raw-second
+                shell_var: "Country"
+
+- job-template:
+    name: 'include-demonstration-{name}'
+    id: 'include-demonstration-{name}'
+    VAR1: "Hello"
+    VAR2: "World"
+    builders:
+        !include: extras/include_demonstrations.yaml
+            
+
+- job-template:
+    name: 'include-raw-test-{name}'
+    id: 'include-raw-test-{name}'
+    builders:
+        - shell:
+            !include-raw:
+                - scripts/somescript.sh
+
+- job-template:
+    name: 'template-test-{name}'
+    id: 'template-test-{name}'
+    builders:
+        - shell: |
+            echo "{shell_var}, World!"
+
+
