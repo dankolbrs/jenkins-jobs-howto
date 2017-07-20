@@ -2,7 +2,7 @@
 
 [Jenkins Job Builder](http://docs.openstack.org/infra/jenkins-job-builder/index.html)
 
-##Jenkins-Jobs Builder
+## Jenkins-Jobs Builder
 * Allows SCM of Jenkins Jobs
 * Build Jenkins Jobs from CLI, rather than UI
 * Does not SCM:
@@ -11,12 +11,12 @@
   * Credentials
 * Cannot export existing job
 
-##Setup Environment
+## Setup Environment
 
-###Get Jenkins-Jobs-Builder
+### Get Jenkins-Jobs-Builder
 `pip install jenkins-jobs-builder`
 
-###Configuration file jenkins_jobs.ini
+### Configuration file jenkins_jobs.ini
 1. Log into Jenkins
 2. User >> Configure
 3. Show API Token
@@ -61,7 +61,7 @@ Directory structure in examples:
 3 directories, 13 files
 ```
 
-###Running Jenkins Job builder
+### Running Jenkins Job builder
 * Can point at specific job
   * `jenkins-jobs --conf jenkins_jobs.ini update jobs/ex1-basic_job.yaml`
 * Can point at directory of jobs
@@ -69,7 +69,7 @@ Directory structure in examples:
 * Should run `test` first to ensure valid XML
   * `jenkins-jobs --conf jenkins_jobs.ini test jobs`
 
-##Job Basics
+## Job Basics
 * Basic Types:
   * Freestyle
   * Pipeline
@@ -78,7 +78,7 @@ Directory structure in examples:
   * Include
   * Include-Raw
 
-###Freestyle Job
+### Freestyle Job
 * Default project-type
 ```
 - job:
@@ -88,7 +88,7 @@ Directory structure in examples:
           - shell: 'echo "Hello"'
 ```
 
-###Pipeline Job
+### Pipeline Job
 * Using DSL to configure job
 ```
 - job:
@@ -116,7 +116,7 @@ Directory structure in examples:
         }
 ```
 
-###Templates
+### Templates
 * Multiple similar jobs
 ```
 - project:
@@ -137,7 +137,7 @@ Directory structure in examples:
             echo "{shell_var}, World!"
 ```
 
-###Include
+### Include
 * Include separate yaml file
 * Replace `!include` with yaml block
 * Treats file as block of yaml (parsed)
@@ -165,7 +165,7 @@ Directory structure in examples:
     echo "{VAR1}"
     echo "{VAR2}"
 ```
-###Include Raw
+### Include Raw
 * Include seperate file of any kind
 * Replaces `!include-raw` with text from file
 * Does not parse
@@ -193,7 +193,7 @@ Directory structure in examples:
 echo "Hello {shell_var}"
 ```
 
-##Job Modules
+## Job Modules
 "The bulk of the job definitions come from the following modules."    
 [Jenkins Job Builder Documentation](http://docs.openstack.org/infra/jenkins-job-builder/definition.html#modules)
 * ExternalJob Project
@@ -225,7 +225,7 @@ echo "Hello {shell_var}"
 * Triggers
 * Wrappers
 
-###Parameters
+### Parameters
 * Specify build parameters
 ```
 builders:
@@ -237,7 +237,7 @@ parameters:
         description: "A parameter named PARAM to be echoed"
 ```
 
-###Properties
+### Properties
 * Multiple properties for build
   * `build-discarder`
 ```
@@ -246,7 +246,7 @@ properties:
         days-to-keep: 1                                           
         num-to-keep: 1      
 ```
-###Publishers
+### Publishers
 *  Actions on completion of job
   * `email`, `artifact-deployer`
 ```
@@ -255,7 +255,7 @@ publishers:
       recipients: foo@example.com
 ```
 
-###SCM
+### SCM
 * Specify SCM location
 ```
 scm:
@@ -265,13 +265,13 @@ scm:
             - master
 ```
 
-###Triggers
+### Triggers
 * Run based on... trigger.
   * github - run on push or PR
   * timed - cron
   * build-result - Result of other build
 
-###Wrappers
+### Wrappers
 * Alter the way a job is run
   * `credentials-binding`
     * Passes credential as environment variable, does not log in output
